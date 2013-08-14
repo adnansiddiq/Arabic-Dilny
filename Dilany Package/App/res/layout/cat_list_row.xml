@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <com.yahia.libs.CustomViews.ImageFromUrl.UIImage
+        android:id="@+id/cats_row_im_thumbs"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="15dp"
+        android:src="@drawable/ic_done" />
+
+    <TextView
+        android:id="@+id/cats_row_tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/cats_row_im_thumbs"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@+id/cats_row_im_thumbs"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="10dp"
+        android:text="Large Text"
+        android:gravity="right"
+        android:textColor="#000000"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+</RelativeLayout>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <com.yahia.libs.CustomViews.ImageFromUrl.UIImage
+        android:id="@+id/row_im_thumb"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_alignParentRight="true"
+         
+        android:layout_marginTop="40dp"
+        android:layout_marginRight="5dp"
+        android:src="@drawable/ic_done" />
+
+
+    <RatingBar
+        android:id="@+id/row_rating_bar"
+        style="?android:attr/ratingBarStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/row_im_thumb"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="15dp" 
+        android:layout_marginRight="15dp"/>
+
+   
+
+    <TextView
+        android:id="@+id/row_tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="5dp"
+        android:layout_toLeftOf="@id/row_im_thumb"
+        android:gravity="right"
+        android:text="Large Text"
+        android:textColor="#000000"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/row_tv_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" 
+        android:layout_alignParentLeft="true"
+        android:layout_alignRight="@+id/row_tv_title"
+        android:layout_below="@+id/row_tv_title"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="1dp"
+        android:gravity="right"
+        android:text="Medium Text"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="#000000" />
+     <TextView
+        android:id="@+id/row_tv_distance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" 
+        android:layout_below="@+id/row_tv_address"
+        android:text="Small Text"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="17dp"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/row_tv_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/row_tv_distance"
+        android:layout_alignBottom="@+id/row_tv_distance"
+        android:layout_centerHorizontal="true"
+        android:text="Small Text"
+        android:visibility="gone"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <ImageButton
+        android:id="@+id/row_im_favo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="22dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/ic_favo_in"
+        android:visibility="invisible" />
+
+</RelativeLayout>

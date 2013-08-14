@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, DilnyActivity!</string>
+    <string name="app_name">دلني</string>
+    <string name="str_uploading_image">جاري رفع الصورة ...</string> 
+    <string name="str_cats">التصنيفات</string>
+    <string name="str_favorites">المفضلة</string>
+    <string name="str_add_to_favorites">أضف إلى المفضلة</string>
+    <string name="str_call">اتصال</string>
+    <string name="str_show_map">الخريطة</string>
+    <string name="str_ratings_and_review">التعليقات و التقييم</string>
+    <string name="str_addNew">أضف مكان جديد</string>
+    <string name="str_loading">جاري التحميل ...</string>
+    <string name="str_connection_error">عفواً , حدث خطأ في الاتصال</string>
+    <string name="str_no_image_selected">لم تقم باختيار اية صورة</string>
+    <string name="str_uploaded_success">تم رفع الصورة بنجاح</string> 
+    <string name="str_location_success">تم جلب إحداثيات المكان بنجاح</string> 
+    <string name="str_location_loading">جاري جلب إحداثيات المكان ...</string>
+    <string name="str_search">البحث ...</string>
+    <string name="str_msg_empty_search">عفواً , الرجاء ملئ حقل البحث</string>
+    <string name="str_msg_search_not_found">عفواً , لم يتم العثور على كلمات بحث مشابة في مساحة ٨٥٠ كيلو متر</string>
+    <string name="str_msg_waitting_for_loaction">عفواً , جاري جلب الإحداثيات</string>
+    <string name="str_msg_waitting_for_Sigin">جاري تسجيل الدخول ...</string> 
+    <string name="str_msg_waitting_for_search">جاري البحث ...</string> 
+    <string name="str_msg_waitting_for_adding_new">جاري إضافة المكان ...</string>
+    <string name="str_open_reviews">مزيد من التعليقات/التقييم</string>
+    <string name="str_msg_waitting_for_ratting">جاري التقييم , الرجاء الإنتظار ..</string>
+    <string name="str_msg_waitting_for_reviews">جاري تحميل التعليقات , الرجاء الإنتظار ..</string>
+     <string name="str_msg_waitting_for_sending_review">جاري إرسال التعليق , الرجاء الإنتظار ..</string>
+     <string name="str_msg_send_review">ارسل</string>
+    <string name="str_msg_empty_review">عفواً , لا سمكن ارسال تعليق فارغ !!</string>
+    <string name="str_msg_review_added">تم إرسال التعليق بنجاح</string>
+    <string name="str_msg_no_phone_found">عفواً , لا يمكنك إجراء مكالمات من هذا الهاتف</string>
+    <string name="str_msg_no_phone_number_sfound">عفواً , لا يوجد رقم للاتصال به .</string>
+    <string name="str_msg_loading_favorites">جاري تحميل المفضلة , الرجاء الانتظار ...</string>
+    <string name="str_msg_signup_done">تمت عملية التسجيل بنجاح , الرجاء تفعيل حسابك</string>
+    <string name="str_msg_address_loading">جاري تحميل العنوان ...</string> 
+    <string name="str_sigin">تسجيل الدخول</string>
+    <string name="str_no_location_selected">لم تقم باختيار اي مكان على الخريطة</string>
+ <string name="str_msg_added_succe">تمت عملية الإضافة بنجاح</string>
+ <string name="str_msg_rating_added">تمت عملية التقييم بنجاح</string>
+ <string name="str_msg_loading_lisiting_detalis">جاري تحميل بيانات المكان ...</string>
+ <string name="str_msg_click_to_open_liting">تم رفع الصورة بنجاح , اضغط لاستعراض تفاصيل المكان</string> 
+  <string name="str_msg_no_favorites">   لاتوجد اماكن مفضلة لديك، بامكانك تصفح الاماكن ، والضغط على النجمه لاضافة الموقع للمفضلة </string>
+  <string name="str_msg_you_need_to_activate_account">لقد استلمت رسالة تفعيل عبر البريد نرجو التفعيل</string>
+  <string name="str_msg_no_result">لا توجد اماكن في هذا التصنيف بالقرب من موقعك الحالي</string>
+  <string name="str_msg_limit_exeded">عفواً , لقد تجاوزت الحد المسموح به من محاولات جلب العنوان</string> 
+  <string name="str_msg_no_results_Found">عفواً , تعذر الوصول لعنوان مكانك الحالي</string> 
+  <string name="str_about_app">تصميم و تطوير   :    </string>
+  <string name="str_about_app_send_site">الاقتراحات والمشاكل   :    </string> 
+ 
+    
+
+</resources>

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+  <ScrollView 
+          xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#f3eee5"
+    android:orientation="vertical"
+       >
+<RelativeLayout 
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#f3eee5"
+    android:orientation="vertical"  >
+
+    <Button
+        android:id="@+id/dilny_btn_cats"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="50dp"
+        android:background="@color/btn_cats_bg" />
+
+    <Button
+        android:id="@+id/dilny_btn_nearby"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="50dp"
+        android:background="@color/btn_nearby_bg"
+        android:enabled="false"
+        android:gravity="right" />
+
+    <Button
+        android:id="@+id/dilny_btn_new_lisitng"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/dilny_btn_cats"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="25dp"
+        android:background="@color/btn_add_bg" />
+
+    <Button
+        android:id="@+id/dilny_btn_favorites"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/dilny_btn_nearby"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="25dp"
+        android:background="@color/btn_favo_bg" />
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="#000000" />
+
+    <TextView
+        android:id="@+id/dilny_address"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_alignBottom="@+id/imageView1"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/dilny_pb"
+        android:layout_toRightOf="@+id/refreshBtn"
+        android:gravity="right"
+        android:text="جاري تحديد المكان .."
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="#f3eee5" 
+        android:layout_marginRight="5dp"/>
+
+    <ProgressBar
+        android:id="@+id/dilny_pb"
+        style="?android:attr/progressBarStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/dilny_btn_favorites"
+        android:layout_below="@+id/dilny_btn_favorites"
+        android:text="@string/str_favorites"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:gravity="right"
+        android:textColor="#000000" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/dilny_btn_favorites"
+        android:layout_below="@+id/dilny_btn_nearby"
+        android:text="بالقرب مني"
+        android:gravity="right"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="#000000" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/dilny_btn_cats"
+        android:layout_below="@+id/dilny_btn_cats"
+        android:text="@string/str_cats"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="#000000" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/dilny_address"
+        android:layout_below="@+id/dilny_btn_new_lisitng"
+        android:gravity="right"
+        android:text="@string/str_addNew"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="#000000" />
+
+    <ImageButton
+        android:id="@+id/dilny_btn_info"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_below="@+id/textView5"
+        android:layout_centerHorizontal="true"
+   android:background="@null"
+        android:src="@color/btn_info"/>
+
+    <ImageButton
+        android:id="@+id/refreshBtn"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="27dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp" 
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/ic_refresh"/>
+
+</RelativeLayout>
+</ScrollView>

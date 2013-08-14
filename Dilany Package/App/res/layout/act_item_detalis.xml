@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android" 
+        android:id="@+id/reg_scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" 
+        android:padding="10dp"
+        android:scrollbars="none"
+        >
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/item_tv_title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="5dp"
+        android:gravity="center"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <com.yahia.libs.CustomViews.ImageFromUrl.UIImage
+        android:id="@+id/item_im"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:layout_below="@id/item_tv_title"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/ic_launcher" />
+<TextView
+        android:id="@+id/tr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignRight="@id/item_tv_title"
+        android:layout_below="@id/item_im"
+        android:layout_marginTop="5dp"
+        android:gravity="right"
+        android:text="العنوان : "
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/item_tv_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignRight="@id/item_tv_title"
+        android:layout_below="@id/tr"
+        android:layout_marginTop="5dp"
+        android:gravity="right"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/item_tv_desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/item_tv_address"
+        android:gravity="right"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/tp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignRight="@id/item_tv_title"
+        android:layout_below="@id/item_tv_desc"
+        android:layout_marginTop="5dp"
+        android:gravity="right"
+        android:text="الهاتــــف : "
+        android:textStyle="bold" />
+
+     
+<TextView
+        android:id="@+id/tR"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+         
+        android:layout_below="@+id/td"
+        android:layout_marginTop="5dp"
+        android:gravity="right"
+        android:text="التقييم : "
+        android:textStyle="bold" />
+    
+    
+
+    <TextView
+        android:id="@+id/tv_line2"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@+id/item_rating_bar"
+        android:background="#CCC"
+        android:gravity="right" />
+    <!--  -->
+
+    <WebView
+        android:id="@+id/item_reviews_webview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_line2"
+        android:layout_marginTop="5dp" />
+
+    <Button
+        android:id="@+id/item_btn_reviews"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/item_reviews_webview"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:text="@string/str_open_reviews" />
+
+    <TextView
+        android:id="@+id/td"
+           android:layout_alignParentRight="true"
+        android:layout_alignRight="@id/item_tv_title"
+        android:layout_below="@+id/tv_phone"
+        android:layout_marginTop="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:text="البـــــــعد :"/>
+
+    <TextView
+        android:id="@+id/item_tv_destance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/tR"
+        android:layout_alignRight="@+id/tv_phone"
+        android:text="sdfasdf"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <RatingBar
+        android:id="@+id/item_rating_bar"
+        style="?android:attr/ratingBarStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/tR"
+        android:layout_toLeftOf="@+id/tR"
+        android:max="5" />
+
+    <TextView
+        android:id="@+id/tv_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tp"
+        android:layout_alignBottom="@+id/tp"
+        android:layout_margin="5dp"
+        android:layout_toLeftOf="@+id/tp"
+        android:gravity="right"
+        android:text="zdxfsdfsdf"
+        android:textColor="#0000ff" />
+    
+</RelativeLayout>
+
+</ScrollView>
