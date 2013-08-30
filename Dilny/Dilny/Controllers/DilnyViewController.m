@@ -10,6 +10,8 @@
 
 #import "ADCategoryViewController.h"
 
+#import "ADAboutViewController.h"
+
 @interface DilnyViewController ()
 
 @end
@@ -54,5 +56,9 @@
 }
 
 - (IBAction)infoAction:(UIButton *)sender {
+    
+    ADAboutViewController *aboutVC = [[ADAboutViewController alloc] initWithNibName:@"ADAboutViewController" bundle:nil];
+    
+    [self.navigationController pushViewController:aboutVC animated:YES];
 }
 @end
