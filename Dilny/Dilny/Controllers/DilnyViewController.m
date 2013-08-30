@@ -8,6 +8,8 @@
 
 #import "DilnyViewController.h"
 
+#import "ADCategoryViewController.h"
+
 @interface DilnyViewController ()
 
 @end
@@ -23,10 +25,10 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -39,6 +41,10 @@
 }
 
 - (IBAction)categoryAction:(UIButton *)sender {
+    
+    ADCategoryViewController *catVC = [[ADCategoryViewController alloc] initWithNibName:@"ADCategoryViewController" bundle:nil];
+    
+    [self.navigationController pushViewController:catVC animated:YES];
 }
 
 - (IBAction)favouriteAction:(UIButton *)sender {

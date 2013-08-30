@@ -54,4 +54,12 @@
     return [NSDate dateWithTimeIntervalSince1970:[[self objectForKey:key] floatValue]];
 }
 
+
+- (NSString *)string4Key:(NSString *)key_ {
+    NSString *str = self[key_];
+    if ( [str isEqualToString:@"untranslated"]) {
+        return @"";
+    }
+    return str;
+}
 @end
