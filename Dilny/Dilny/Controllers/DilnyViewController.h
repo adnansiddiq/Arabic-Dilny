@@ -8,7 +8,9 @@
 
 #import "ADBaseViewController.h"
 
-@interface DilnyViewController : ADBaseViewController
+@interface DilnyViewController : ADBaseViewController <UISearchBarDelegate>
+
+@property (weak, nonatomic) IBOutlet UILabel *tvLabel;
 
 - (IBAction)nearbyAction:(UIButton *)sender;
 - (IBAction)categoryAction:(UIButton *)sender;
@@ -16,4 +18,5 @@
 - (IBAction)addNewAction:(UIButton *)sender;
 - (IBAction)infoAction:(UIButton *)sender;
 
+- (IBAction)signInAction:(UIButton *)sender;
 @end

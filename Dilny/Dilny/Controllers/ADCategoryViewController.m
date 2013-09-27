@@ -8,7 +8,7 @@
 
 #import "ADCategoryViewController.h"
 
-#import "ADListViewController.h"
+#import "ADItemsViewController.h"
 
 #import "ADCategoryCell.h"
 
@@ -19,7 +19,10 @@
     NSArray *_allCategories;
     
     PullToRefreshView *_pullToRefresh;
+    UIRefreshControl *_refreshControl;
 }
+
+@property (weak, nonatomic) IBOutlet UIButton *btnDone;
 
 @end
 
@@ -39,11 +42,23 @@
     
     [super viewDidLoad];
     
-    _pullToRefresh = [[PullToRefreshView alloc] initWithScrollView:(UIScrollView *) self.categoryListView];
-    _pullToRefresh.delegate = self;
-    [self.categoryListView addSubview:_pullToRefresh];
+    self.navigationController.navigationBarHidden = YES;
+    
+    if (NSClassFromString(@"UIRefreshControl")) {
+         _refreshControl = [[UIRefreshControl alloc] init];
+        _refreshControl.tintColor = [UIColor greenColor];
+        [_refreshControl addTarget:self action:@selector(refreshData:) forControlEvents:UIControlEventValueChanged];
+        [self.categoryListView addSubview:_refreshControl];
+    } else {
+        _pullToRefresh = [[PullToRefreshView alloc] initWithScrollView:(UIScrollView *) self.categoryListView];
+        _pullToRefresh.delegate = self;
+        [self.categoryListView addSubview:_pullToRefresh];
+
+    }
     
     [_catCaller loadCategoriesWithProgressView:YES];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneAction)];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -52,6 +67,9 @@
     [self.categoryListView deselectRowAtIndexPath:[self.categoryListView indexPathForSelectedRow] animated:YES];
 }
 
+- (void)refreshData:(UIRefreshControl *)sender {
+    [_catCaller loadCategoriesWithProgressView:NO];
+}
 - (void)pullToRefreshViewShouldRefresh:(PullToRefreshView *)view {
     
     [_catCaller loadCategoriesWithProgressView:NO];
@@ -85,8 +103,10 @@
     
     ADCategory *cat = [_allCategories objectAtIndex:indexPath.row];
     
-    ADListViewController *listVC = [[ADListViewController alloc] initWithNibName:@"ADListViewController" bundle:nil];
-    listVC.catID = cat.catID;
+    ADItemsViewController *listVC = [[ADItemsViewController alloc] initWithNibName:@"ADItemsViewController" bundle:nil];
+    listVC.catID = [cat.catID stringValue];
+    listVC.searchPath = @"searchByCat";
+    listVC.mapSelected = NO;
     [self.navigationController pushViewController:listVC animated:YES];
 }
 
@@ -98,12 +118,23 @@
     [self hideProgressView];
     _allCategories = result[DATA];
     
-    [_categoryListView reloadData];
+    if (_pullToRefresh) {
+        [_pullToRefresh finishedLoading];
+    } else {
+        [_refreshControl endRefreshing];
+    }
+    
+    [self.categoryListView reloadData];
     
 }
 
 - (void)caller:(ADBaseCaller *)caller didFailWithError:(NSError *)error {
     
+    if (_pullToRefresh)
+        [_pullToRefresh finishedLoading];
+    else
+        [_refreshControl endRefreshing];
+    [self hideProgressView];
 }
 
 

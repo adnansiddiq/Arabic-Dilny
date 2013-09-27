@@ -137,16 +137,9 @@
 		date = [delegate pullToRefreshViewLastUpdated:self];
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    NSArray *prefered = [NSLocale preferredLanguages];
-    if ([[prefered objectAtIndex:0] isEqualToString:@"it"]) {
-        NSLocale *it_CH = [[NSLocale alloc] initWithLocaleIdentifier:@"it_CH"];
-        [formatter setLocale:it_CH];
-    } else {
-        [formatter setLocale:[NSLocale currentLocale]];
-    }
     [formatter setDateStyle:NSDateFormatterMediumStyle];
     [formatter setTimeStyle:NSDateFormatterMediumStyle];
-    lastUpdatedLabel.text = [NSString stringWithFormat:@"%@: %@", NSLocalizedString(@"LAST_UPDATE", nil), [formatter stringFromDate:date]];
+    lastUpdatedLabel.text = [NSString stringWithFormat:@"%@: %@", NSLocalizedString(@"Last Update", nil), [formatter stringFromDate:date]];
     
     self.updateDate = date;
 }
@@ -156,14 +149,14 @@
     
 	switch (state) {
 		case PullToRefreshViewStateReady:
-			statusLabel.text = NSLocalizedString(@"RELEASE_TO_REFRESH", nil);
+			statusLabel.text = NSLocalizedString(@"Release To Refresh", nil);
 			[self showActivity:NO animated:NO];
             [self setImageFlipped:YES];
             scrollView.contentInset = UIEdgeInsetsZero;
 			break;
             
 		case PullToRefreshViewStateNormal:
-			statusLabel.text = NSLocalizedString(@"PULL_TO_REFRESH", nil);
+			statusLabel.text = NSLocalizedString(@"Pull To Refresh", nil);
 			[self showActivity:NO animated:NO];
             [self setImageFlipped:NO];
 			[self refreshLastUpdatedDate];
@@ -171,7 +164,7 @@
 			break;
             
 		case PullToRefreshViewStateLoading:
-			statusLabel.text = NSLocalizedString(@"LOADING_KEY", nil);
+			statusLabel.text = @"جاري التحميل ...";
 			[self showActivity:YES animated:YES];
             [self setImageFlipped:NO];
             scrollView.contentInset = UIEdgeInsetsMake(60.0f, 0.0f, 0.0f, 0.0f);

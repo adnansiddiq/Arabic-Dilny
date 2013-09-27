@@ -10,12 +10,14 @@
 
 #import "PullToRefreshView.h"
 
-#import "ADListCaller.h"
 
-@interface ADListViewController : ADBaseViewController<ADBaseCallerDelegate>
+@interface ADListViewController : ADBaseViewController
 
 @property (weak, nonatomic) IBOutlet UITableView *listTableView;
 
-@property (strong, nonatomic) NSNumber *catID;
+@property (strong, nonatomic) NSArray *allItems;
+
+
+- (void)loadData;
 
 @end

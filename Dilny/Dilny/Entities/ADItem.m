@@ -18,11 +18,11 @@
     if (self) {
         _address1 = [dict_ string4Key:@"address_line_1"];
         _address2 = [dict_ string4Key:@"address_line_2"];
-        _catID = [dict_ numberForKey:@"cat_id"];
+        _catID = [dict_ string4Key:@"cat_id"];
         _country = dict_[@"country"];
         _description = dict_[@"desc"];
         _distance = dict_[@"distance"];
-        _itemID = [dict_ numberForKey:@"id"];
+        _itemID = [dict_ string4Key:@"id"];
         _imageURL = [dict_ urlForKey:@"image"];
         _latitude = dict_[@"lat"];
         _longitude = dict_[@"lang"];
@@ -33,5 +33,13 @@
         _title = dict_[@"title"];
     }
     return self;
+}
+
+- (CLLocationCoordinate2D)cordinate {
+
+    CLLocationCoordinate2D cor;
+    cor.latitude = _latitude.floatValue;
+    cor.longitude = _longitude.floatValue;
+    return cor;
 }
 @end

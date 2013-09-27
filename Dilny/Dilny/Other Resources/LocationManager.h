@@ -15,6 +15,9 @@ extern NSString *const kLocationStatusChanged;
 extern NSString *const kReverseGeoCodeDone;
 extern NSString *const kGeoLocationProcessed;
 
+extern NSString *const kAddressFindDone;
+extern NSString *const kAddressNOResult;
+
 @interface LocationManager : NSObject<CLLocationManagerDelegate>{
     
     CLLocationManager *mLocationManager;
@@ -22,11 +25,27 @@ extern NSString *const kGeoLocationProcessed;
     
     BOOL mHasInitialCoordinatesRetrieved;
     CLLocation *mCurrentLocation;
-    
-    NSString *mCurrentCity;
+
 }
 
-@property (readonly, strong) NSString *currentCity;
+
+@property (readonly, strong, nonatomic) NSString *fullAddress;
+@property (readonly, assign, nonatomic) CGFloat latitude;
+@property (readonly, assign, nonatomic) CGFloat longtitude;
+
+@property (readonly, strong, nonatomic) NSString *country;
+@property (readonly, strong, nonatomic) NSString *locality;
+@property (readonly, strong, nonatomic) NSString *subLocality;
+@property (readonly, strong, nonatomic) NSString *streatNumber;
+@property (readonly, strong, nonatomic) NSString *adminLevel1;
+@property (readonly, strong, nonatomic) NSString *adminLevel2;
+@property (readonly, strong, nonatomic) NSString *adminLevel3;
+@property (readonly, strong, nonatomic) NSString *route;
+@property (readonly, strong, nonatomic) NSString *postalCode;
+
+
+@property (readonly, strong, nonatomic) NSString *city;
+@property (readonly, strong, nonatomic) NSString *address;
 
 
 + (LocationManager *) instance;

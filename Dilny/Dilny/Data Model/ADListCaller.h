@@ -12,11 +12,22 @@
 
 @interface ADListCaller : ADBaseCaller
 
-- (void)searchByCategory:(NSNumber *)catID_
-                latitude:(CGFloat)lat_
-               longitude:(CGFloat)lng_
-                  radius:(CGFloat)radius_
-        withProgressView:(BOOL)shown_;
+@property (assign, nonatomic) BOOL noMoreLoading;
+
+- (void)searchByType:(NSString *)path_
+            category:(NSString *)catID_
+            latitude:(CGFloat)lat_
+           longitude:(CGFloat)lng_
+              radius:(CGFloat)radius_
+    withProgressView:(BOOL)shown_;
+
+- (void)searchByType:(NSString *)path_
+               title:(NSString *)title_
+            category:(NSString *)catID_
+            latitude:(CGFloat)lat_
+           longitude:(CGFloat)lng_
+              radius:(CGFloat)radius_
+    withProgressView:(BOOL)shown_;
 
 - (void)loadListWithAnimation:(BOOL)shown_;
 

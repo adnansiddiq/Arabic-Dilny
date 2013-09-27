@@ -26,6 +26,10 @@ typedef void (^RevealBlock)();
     RevealBlock _revealBlock;
 }
 
+@property (weak, nonatomic) IBOutlet UIView *topView;
+@property (weak, nonatomic) IBOutlet UIView *bottomView;
+@property (weak, nonatomic) IBOutlet UIImageView *logoImage;
+
 - (id)initWithTitle:(NSString *)title withRevealBlock:(RevealBlock)revealBlock;
 
 - (void)showAlertViewWithMessage:(NSString *)message;
@@ -34,5 +38,11 @@ typedef void (^RevealBlock)();
 - (void)hideProgressView;
 
 - (BOOL)isDeviceiPhone;
+
+- (IBAction)doneAction;
+
+- (NSInteger)systemVersion;
+
+- (IBAction)backAction;
 
 @end

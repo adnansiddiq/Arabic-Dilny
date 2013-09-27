@@ -18,6 +18,8 @@
     NSInteger _pageNumber;
     
     NSString *_path;
+    
+    NSString *_title;
 }
 
 @end
@@ -33,23 +35,50 @@
         ADItem *item = [[ADItem alloc] initWithDictionary:dict];
         [result addObject:item];
     }
+    if (result.count == 0) _noMoreLoading = YES;
     
     return [NSArray arrayWithArray:result];
 }
 
-- (void)searchByCategory:(NSNumber *)catID_
-                latitude:(CGFloat)lat_
-               longitude:(CGFloat)lng_
-                  radius:(CGFloat)radius_
-        withProgressView:(BOOL)shown_ {
+- (void)searchByType:(NSString *)path_
+            category:(NSString *)catID_
+            latitude:(CGFloat)lat_
+           longitude:(CGFloat)lng_
+              radius:(CGFloat)radius_
+    withProgressView:(BOOL)shown_ {
     
     _pageNumber = 0;
     
-    _catID = [catID_ stringValue];
+    _catID = catID_ ;
     _lat = lat_;
     _lng = lng_;
     _radius = radius_;
-    _path = @"searchByCat";
+    _path = path_;;
+    
+    _noMoreLoading = NO;
+    
+    [self loadListWithAnimation:shown_];
+    
+}
+
+- (void)searchByType:(NSString *)path_
+               title:(NSString *)title_
+            category:(NSString *)catID_
+            latitude:(CGFloat)lat_
+           longitude:(CGFloat)lng_
+              radius:(CGFloat)radius_
+    withProgressView:(BOOL)shown_ {
+    
+    _pageNumber = 0;
+    
+    _catID = catID_ ;
+    _lat = lat_;
+    _lng = lng_;
+    _radius = radius_;
+    _path = path_;
+    _title = title_;
+    
+    _noMoreLoading = NO;
     
     [self loadListWithAnimation:shown_];
     
@@ -59,7 +88,13 @@
     
     self.showProgressView = shown_;
     
-    NSString *strURL = [NSString stringWithFormat:@"%@/lat/%f/lng/%f/radius/%g/page/%d/cat/%@", _path, _lat, _lng, _radius, _pageNumber, _catID];
+    NSString *strURL;
+    
+    if (_title) {
+        strURL = [NSString stringWithFormat:@"%@/title/%@/lat/%f/lng/%f/radius/%g/page/%d/cat/%@", _path, _title, _lat, _lng, _radius, _pageNumber, _catID];
+    } else {
+        strURL = [NSString stringWithFormat:@"%@/lat/%f/lng/%f/radius/%g/page/%d/cat/%@", _path, _lat, _lng, _radius, _pageNumber, _catID];
+    }
     
     [self executeRequestType:RequestTypeList
                requestMethod:RequestMethodGet

@@ -15,5 +15,13 @@
 
 #define APP_NAME            @"Dilny"
 
+#define ERROR_CODE_LOGIN_NOTEXIST       @"E5006"
+#define ERROR_CODE_SIGNUP_USEREXIST     @"E5016"
+#define ERROR_CODE_SIGNUP_NAME          @"E5017"
+#define ERROR_CODE_SIGNUP_PASSWORD      @"E5018"
+
+#define USER_ID         @"userid"
+
+#define FAV_SUCCESS_RESPONCE            @"D5005"
 
 #endif

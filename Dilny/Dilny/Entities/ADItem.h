@@ -7,16 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <MapKit/MapKit.h>
 
 @interface ADItem : NSObject
 
 @property (strong, nonatomic) NSString *address1;
 @property (strong, nonatomic) NSString *address2;
-@property (strong, nonatomic) NSNumber *catID;
+@property (strong, nonatomic) NSString *catID;
 @property (strong, nonatomic) NSString *country;
 @property (strong, nonatomic) NSString *description;
 @property (strong, nonatomic) NSString *distance;
-@property (strong, nonatomic) NSNumber *itemID;
+@property (strong, nonatomic) NSString *itemID;
 @property (strong, nonatomic) NSURL *imageURL;
 @property (strong, nonatomic) NSString *latitude;
 @property (strong, nonatomic) NSString *longitude;
@@ -27,5 +28,7 @@
 @property (strong, nonatomic) NSString *title;
 
 - (id)initWithDictionary:(NSDictionary *)dict_;
+
+- (CLLocationCoordinate2D)cordinate;
 
 @end

@@ -12,5 +12,9 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
 
+    #import <CommonCrypto/CommonDigest.h>
+
 #import "NSDictionary+ADAdditions.h"
+#import "NSString+Helper.h"
+#import "UIAlertView+Block.h"
 #endif

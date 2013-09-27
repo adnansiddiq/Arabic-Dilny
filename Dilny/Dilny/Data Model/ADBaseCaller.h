@@ -24,7 +24,9 @@
 
 typedef enum {
     RequestTypeCategory = 0,
-    RequestTypeList
+    RequestTypeList,
+    RequestTypeRegister,
+    RequestTypeLogin
     
 } RequestType;
 

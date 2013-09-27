@@ -32,10 +32,26 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //[self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"top_nav"] forBarMetrics:UIBarMetricsDefault];
     
-    
-    
+    if ([self systemVersion] != 7) {
+        CGRect frame = self.topView.frame;
+        frame.size.height -= 20;
+        self.topView.frame = frame;
+        
+        frame = self.bottomView.frame;
+        frame.origin.y -= 20;
+        frame.size.height += 20;
+        self.bottomView.frame = frame;
+        
+        frame = self.logoImage.frame;
+        frame.origin.y = 5;
+        frame.size.height = 38;
+        self.logoImage.frame = frame;
+    }
+}
+
+- (IBAction)doneAction {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)revealSidebar {
@@ -56,11 +72,17 @@
 	HUD = nil;
 }
 
+- (NSInteger)systemVersion {
+    
+    NSString *v = [[UIDevice currentDevice] systemVersion];
+    NSArray *comp = [v componentsSeparatedByString:@"."];
+    return [comp[0] integerValue];
+}
 - (void)showAlertViewWithMessage:(NSString *)message {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:APP_NAME
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"دلني"
                                                         message:message
                                                        delegate:nil
-                                              cancelButtonTitle:NSLocalizedString(@"OK_KEY", nil)
+                                              cancelButtonTitle:NSLocalizedString(@"OK", nil)
                                               otherButtonTitles:nil];
     [alertView show];
 }
@@ -74,5 +96,16 @@
     }
 }
 
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 0;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return nil;
+}
+
+- (IBAction)backAction {
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 @end

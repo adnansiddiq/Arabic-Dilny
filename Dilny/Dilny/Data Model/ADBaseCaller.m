@@ -41,8 +41,6 @@
     
     _status = RequestStatusInitate;
     
-    //NSString *token = [[NSUserDefaults standardUserDefaults] valueForKey:ACCESS_TOKEN];
-    
     NSString *urlString = [NSString stringWithFormat:@"%@%@", BASE_API, path_];
     NSLog(@"Request ------ %@", urlString);
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;

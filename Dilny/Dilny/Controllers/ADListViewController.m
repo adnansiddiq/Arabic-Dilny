@@ -10,19 +10,18 @@
 
 #import "ADDetailViewController.h"
 
+#import "ADItemsViewController.h"
+
 #import "ADItemCell.h"
 
 #import "ADLoadingViewCell.h"
 
-#import "LocationManager.h"
+#import "AppDelegate.h"
 
 @interface ADListViewController () {
     
-    ADListCaller *_listCaller;
-    
-    NSArray *_allItems;
-    
     PullToRefreshView *_pullToRefresh;
+    UIRefreshControl *_refreshControl;
     
     BOOL _isMoreLoading;
 }
@@ -36,7 +35,6 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         
-        _listCaller = [[ADListCaller alloc] initWithDelegate:self];
         _allItems = @[];
         
     }
@@ -46,33 +44,57 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _pullToRefresh = [[PullToRefreshView alloc] initWithScrollView:(UIScrollView *) self.listTableView];
-    _pullToRefresh.delegate = self;
-    [self.listTableView addSubview:_pullToRefresh];
+    self.navigationController.navigationBarHidden = YES;
+    ADItemsViewController *vc = (ADItemsViewController *)self.parentViewController;
 
+    if (vc.isFavourite) {
+        _isMoreLoading = NO;
+        return;
+    }
     
-    CLLocationCoordinate2D cor = [[LocationManager instance] currentCoordinate];
-    [_listCaller searchByCategory:_catID latitude:cor.latitude longitude:cor.longitude radius:50 withProgressView:YES];
+    if (NSClassFromString(@"UIRefreshControl")) {
+        
+        _refreshControl = [[UIRefreshControl alloc] init];
+        _refreshControl.tintColor = [UIColor greenColor];
+        [_refreshControl addTarget:self action:@selector(refreshData:) forControlEvents:UIControlEventValueChanged];
+        [self.listTableView addSubview:_refreshControl];
+        
+    } else {
+        _pullToRefresh = [[PullToRefreshView alloc] initWithScrollView:(UIScrollView *) self.listTableView];
+        _pullToRefresh.delegate = (id)self;
+        [self.listTableView addSubview:_pullToRefresh];
+    }
     
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
+    [self.listTableView reloadData];
+
     [self.listTableView deselectRowAtIndexPath:[self.listTableView indexPathForSelectedRow] animated:YES];
+}
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+}
+
+- (void)refreshData:(UIRefreshControl *)sender {
+    
+    ADItemsViewController *vc = (ADItemsViewController *)self.parentViewController;
+    [vc refreshData];
 }
 
 - (void)pullToRefreshViewShouldRefresh:(PullToRefreshView *)view {
 
-    CLLocationCoordinate2D cor = [[LocationManager instance] currentCoordinate];
-    [_listCaller searchByCategory:_catID latitude:cor.latitude longitude:cor.longitude radius:50 withProgressView:NO];
-
+    ADItemsViewController *vc = (ADItemsViewController *)self.parentViewController;
+    [vc refreshData];
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return _isMoreLoading?_allItems.count+1:_allItems.count;
+    return _isMoreLoading?_allItems.count + 1 : _allItems.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -107,23 +129,26 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
-    ADDetailViewController *detailVC = [[ADDetailViewController alloc] initWithNibName:@"ADDetailViewController" bundle:nil];
-    detailVC.item = _allItems[indexPath.row];
-    [self.navigationController pushViewController:detailVC animated:YES];
-
+    ADItemsViewController *vc = (ADItemsViewController *)self.parentViewController;
+    [vc selectedItemDetailWithIndex:indexPath.row];
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    ADItemsViewController *vc = (ADItemsViewController *)self.parentViewController;
+    
+    if (vc.listCaller.noMoreLoading) return;
     
         if (indexPath.row == _allItems.count - 2) {
             if (!_isMoreLoading) {
+                _isMoreLoading = YES;
                 [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                    [_listTableView insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:_allItems.count inSection:0]]
+                    NSLog(@"%d", _allItems.count);
+                    [self.listTableView insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:_allItems.count inSection:0]]
                                           withRowAnimation:UITableViewRowAnimationFade];
                 }];
                 
-                [_listCaller loadListWithAnimation:NO];
-                _isMoreLoading = YES;
+                [vc moreLoading];
             }
         }
 }
@@ -131,24 +156,34 @@
 
 #pragma mark - Delgates
 
-- (void)callerDidFinishLoading:(ADBaseCaller *)caller receivedObject:(NSObject *)object {
-    
-    NSDictionary *data = (NSDictionary *)object;
-    _allItems = [_allItems arrayByAddingObjectsFromArray:data[DATA]];
-    [_listTableView reloadData];
-    
-    [self hideProgressView];
-    
-    _isMoreLoading = NO;
-    
-}
-- (void)caller:(ADBaseCaller *)caller didFailWithError:(NSError *)error {
-    
-}
+- (void)loadData {
 
-- (void)caller:(ADBaseCaller *)caller progressViewWithMessage:(NSString *)message_ {
+    _isMoreLoading = NO;
+    [self.listTableView reloadData];
     
-    [self showProgressViewFor:self.view withMessage:message_];
+    if (_pullToRefresh) {
+        [_pullToRefresh finishedLoading];
+    } else {
+        [_refreshControl endRefreshing];
+    }
+    
+    UIView *v = [self.view viewWithTag:10];
+    if (v) {
+        [v removeFromSuperview];
+    }
+    
+    if (_allItems.count == 0) {
+        
+        UILabel *noResult = [[UILabel alloc] initWithFrame:self.view.bounds];
+        noResult.numberOfLines = 0;
+        noResult.textColor = [UIColor blackColor];
+        noResult.tag = 10;
+        noResult.backgroundColor = [UIColor whiteColor];
+        noResult.text = @"اتوجد اماكن مفضلة لديك، بامكانك تصفح الاماكن ، والضغط على النجمه لاضافة الموقع للمفضلة";
+        noResult.textAlignment = NSTextAlignmentCenter;
+        [self.view addSubview:noResult];
+    }
+
 }
 
 

@@ -15,4 +15,5 @@
 @interface ADCategoryViewController : ADBaseViewController <ADBaseCallerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *categoryListView;
+
 @end
